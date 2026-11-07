@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import { render } from 'astro:content';
+import activities from '../data/activities.yaml';
+import profile from '../data/profile.yaml';
+import { getPage } from '../lib/content';
+import { formatDate } from '../lib/utils';
+
+const page = await getPage('teaching');
+const { Content } = await render(page!);
+const label = (a: any) => a.dateLabel ?? formatDate(a.date, 'short');
+---
+<BaseLayout title="Teaching and Academic Activities" description={`Teaching philosophy, courses, workshops and academic development of ${profile.name} at ${profile.affiliation}.`}>
+  <div class="wrap">
+    <header class="page-head">
+      <span class="eyebrow">Teaching</span>
+      <h1>Teaching and academic activities</h1>
+      <p>Lecturer at {profile.affiliation} since 2019, teaching business and entrepreneurship through practice.</p>
+    </header>
+
+    <Section title="Teaching philosophy" id="philosophy">
+      <div class="prose"><Content /></div>
+    </Section>
+
+    <Section title="Courses taught" id="courses" note={`${profile.affiliation}, 2019–present`}>
+      <ul class="inline-list">{activities.courses.map((c: string) => <li>{c}</li>)}</ul>
+    </Section>
+
+    <Section title="Pedagogical approaches" id="approaches">
+      <ul class="inline-list">
+        <li>Workshop (activity-based) model</li><li>Case method</li><li>Projects</li><li>Experiential learning</li><li>Role-play simulations</li><li>MVP-based startup simulation</li>
+      </ul>
+    </Section>
+
+    <Section title="Workshops delivered" id="workshops" note="For colleges, NGOs and incubation programs.">
+      <ul class="dated">
+        {activities.workshops.map((w: any) => (
+          <li><span class="when">{label(w)}</span><span class="what">{w.link ? <a href={w.link} target="_blank" rel="noopener">{w.title}</a> : w.title}<span class="where">{w.host}</span></span></li>
+        ))}
+      </ul>
+    </Section>
+
+    <Section title="Talks and conferences" id="talks">
+      <ul class="dated">
+        {activities.talks.map((t: any) => (
+          <li><span class="when">{label(t)}</span><span class="what">{t.link ? <a href={t.link} target="_blank" rel="noopener">{t.title}</a> : t.title}<span class="where">{t.event}</span></span></li>
+        ))}
+      </ul>
+    </Section>
+
+    <Section title="Academic development" id="development" note="Training in teaching methods and research.">
+      <ul class="dated">
+        {activities.training.map((t: any) => (
+          <li><span class="when">{label(t)}</span><span class="what">{t.title}<span class="where">{t.organiser}</span></span></li>
+        ))}
+      </ul>
+    </Section>
+  </div>
+</BaseLayout>

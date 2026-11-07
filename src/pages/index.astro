@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import Publication from '../components/Publication.astro';
+import Project from '../components/Project.astro';
+import ArticleItem from '../components/ArticleItem.astro';
+import ProfileLinks from '../components/ProfileLinks.astro';
+import profile from '../data/profile.yaml';
+import { getArticles, getProjects, getPublications } from '../lib/content';
+
+const featured = (await getPublications()).filter((p) => p.data.featured);
+const current = (await getProjects('research')).filter((p) => p.data.status === 'ongoing');
+const articles = (await getArticles()).slice(0, 3);
+const paragraphs = profile.intro.trim().split(/\n\s*\n/);
+---
+<BaseLayout>
+  <div class="wrap">
+    <div class="hero">
+      <div>
+        <h1>{profile.name}</h1>
+        <p class="tagline">{profile.tagline}</p>
+        <div class="intro">{paragraphs.map((p: string) => <p>{p}</p>)}</div>
+        <ProfileLinks />
+      </div>
+      <figure class="hero-photo">
+        <img src={profile.photo} alt={profile.photoAlt} width="900" height="900" fetchpriority="high" />
+        <figcaption>{profile.jobTitle}, {profile.affiliation}<br />{profile.location}</figcaption>
+      </figure>
+    </div>
+
+    <Section title="Research interests" id="interests">
+      <ul class="inline-list">{profile.researchInterests.map((i: string) => <li>{i}</li>)}</ul>
+      <a class="more-link" href="/research/">Research agenda and projects</a>
+    </Section>
+
+    <Section title="Selected publications" id="publications">
+      <ul class="entries">{featured.map((p) => <Publication pub={p} showSummary={false} />)}</ul>
+      <a class="more-link" href="/publications/">All publications</a>
+    </Section>
+
+    <Section title="Current research" id="current">
+      <ul class="entries">{current.map((p) => <Project project={p} />)}</ul>
+    </Section>
+
+    <Section title="Entrepreneurship in practice" id="practice" note="Business incubation and industry–academia collaboration at Boston International College, 2019–2024.">
+      <ul class="figures">
+        <li><strong>5</strong><span>incubation cohorts led at BIC Startups</span></li>
+        <li><strong>130+</strong><span>students in 30+ teams developed and pitched startup ideas</span></li>
+        <li><strong>USD 40,000</strong><span>secured from UGC Nepal's Entrepreneurship Support Program</span></li>
+        <li><strong>7+</strong><span>institutional collaboration agreements</span></li>
+      </ul>
+      <a class="more-link" href="/entrepreneurship/">Entrepreneurship and innovation work</a>
+    </Section>
+
+    {articles.length > 0 && (
+      <Section title="Insights" id="insights" note="Op-eds and commentary on entrepreneurship and innovation in Nepal.">
+        <ul class="entries">{articles.map((a) => <ArticleItem article={a} />)}</ul>
+        <a class="more-link" href="/insights/">All insights</a>
+      </Section>
+    )}
+
+    <Section title="Contact" id="contact">
+      <p>I welcome conversations about research collaboration, teaching, workshops and entrepreneurship programs. Write to me at <a href={`mailto:${profile.email}`}>{profile.email}</a>.</p>
+    </Section>
+  </div>
+</BaseLayout>

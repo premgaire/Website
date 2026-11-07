@@ -1,0 +1,105 @@
+---
+/**
+ * Shared page shell: <head> metadata (SEO, social previews, structured data),
+ * header, footer. Every page uses this layout.
+ */
+import '@fontsource-variable/source-serif-4';
+import '@fontsource-variable/inter';
+import '../styles/global.css';
+import profile from '../data/profile.yaml';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title?: string;          // page title (site name is added automatically)
+  description?: string;
+  image?: string;          // social preview image path
+  type?: 'website' | 'article' | 'profile';
+  jsonLd?: object | object[];
+  publishedTime?: string;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description = profile.description,
+  image = '/images/og-image.jpg',
+  type = 'website',
+  jsonLd,
+  publishedTime,
+  noindex = false,
+} = Astro.props;
+
+const site = Astro.site!;
+const fullTitle = title ? `${title} — ${profile.name}` : `${profile.name} — ${profile.jobTitle}, ${profile.affiliation}`;
+const canonical = new URL(Astro.url.pathname, site).href;
+const imageUrl = new URL(image, site).href;
+
+// Person schema appears on every page so search engines connect the site to you.
+const person = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': `${site.href}#person`,
+  name: profile.name,
+  alternateName: profile.shortName,
+  url: site.href,
+  image: new URL(profile.photo, site).href,
+  jobTitle: profile.jobTitle,
+  email: `mailto:${profile.email}`,
+  worksFor: { '@type': 'CollegeOrUniversity', name: profile.affiliation, url: profile.affiliationUrl },
+  alumniOf: [
+    { '@type': 'CollegeOrUniversity', name: 'La Trobe University' },
+    { '@type': 'CollegeOrUniversity', name: 'Boston International College' },
+  ],
+  address: { '@type': 'PostalAddress', addressLocality: 'Bharatpur', addressRegion: 'Chitwan', addressCountry: 'NP' },
+  knowsAbout: profile.researchInterests,
+  sameAs: Object.values(profile.links),
+};
+const schemas = [person, ...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [])];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content={profile.name} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+    {profile.googleSiteVerification && <meta name="google-site-verification" content={profile.googleSiteVerification} />}
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="alternate" type="application/rss+xml" title={`${profile.name} — Insights`} href="/insights/rss.xml" />
+    <meta name="theme-color" content="#fcfbf8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#121416" media="(prefers-color-scheme: dark)" />
+
+    <!-- Social sharing previews (Facebook, LinkedIn, X, WhatsApp) -->
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content={profile.name} />
+    <meta property="og:title" content={title ?? fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
+    {publishedTime && <meta property="article:published_time" content={publishedTime} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title ?? fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+
+    {schemas.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

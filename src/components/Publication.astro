@@ -1,0 +1,21 @@
+---
+import { doiUrl } from '../lib/utils';
+import type { CollectionEntry } from 'astro:content';
+interface Props { pub: CollectionEntry<'publications'>; showSummary?: boolean }
+const { pub, showSummary = true } = Astro.props;
+const p = pub.data;
+const href = doiUrl(p.doi) ?? p.url;
+const volumeInfo = [p.volume && (p.issue ? `${p.volume}(${p.issue})` : p.volume), p.pages].filter(Boolean).join(', ');
+---
+<li class="entry">
+  <h3 class="entry-title">{href ? <a href={href} target="_blank" rel="noopener">{p.title}</a> : p.title}</h3>
+  <p class="entry-meta">
+    {p.authors} ({p.year}). <em>{p.venue}</em>{volumeInfo && `, ${volumeInfo}`}.
+  </p>
+  {showSummary && p.summary && <p class="entry-desc">{p.summary}</p>}
+  <div class="entry-links">
+    {p.doi && <a href={doiUrl(p.doi)} target="_blank" rel="noopener">DOI: {p.doi}</a>}
+    {!p.doi && p.url && <a href={p.url} target="_blank" rel="noopener">View</a>}
+    {p.pdf && <a href={p.pdf}>PDF</a>}
+  </div>
+</li>

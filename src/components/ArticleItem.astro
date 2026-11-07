@@ -1,0 +1,23 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { formatDate, articleHref } from '../lib/utils';
+interface Props { article: CollectionEntry<'articles'> }
+const { article } = Astro.props;
+const a = article.data;
+const href = articleHref(article);
+const external = Boolean(a.externalUrl);
+---
+<li class="entry">
+  <p class="entry-meta" style="margin-bottom:.3rem">
+    <time datetime={a.date.toISOString().slice(0, 10)}>{formatDate(a.date)}</time>
+    {a.outlet && <> · {a.outlet}</>} · <span class="tag neutral">{a.category}</span>
+    {a.language === 'ne' && <> <span class="tag neutral">in Nepali</span></>}
+  </p>
+  <h3 class="entry-title">
+    <a href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}>
+      {a.titleOriginal ? <span lang={a.language}>{a.titleOriginal}</span> : a.title}
+    </a>
+  </h3>
+  {a.titleOriginal && <p class="entry-meta">{a.title}</p>}
+  {a.summary && <p class="entry-desc">{a.summary}</p>}
+</li>

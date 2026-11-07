@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleItem from '../../components/ArticleItem.astro';
+import profile from '../../data/profile.yaml';
+import { getArticles } from '../../lib/content';
+
+const articles = await getArticles();
+const years = [...new Set(articles.map((a) => a.data.date.getUTCFullYear()))];
+---
+<BaseLayout title="Insights" description={`Op-eds, research-informed commentary and reflections by ${profile.name} on entrepreneurship, innovation and Nepal's economic and institutional development.`}>
+  <div class="wrap">
+    <header class="page-head">
+      <span class="eyebrow">Insights</span>
+      <h1>Insights</h1>
+      <p>Op-eds, research-informed commentary and reflections on entrepreneurship, innovation, higher education and Nepal's economic and institutional development.</p>
+    </header>
+    <div class="prose" style="max-width:46rem">
+      {years.map((y) => (
+        <section aria-labelledby={`y${y}`}>
+          <h2 id={`y${y}`} class="eyebrow" style="margin-top:2rem">{y}</h2>
+          <ul class="entries">
+            {articles.filter((a) => a.data.date.getUTCFullYear() === y).map((a) => <ArticleItem article={a} />)}
+          </ul>
+        </section>
+      ))}
+      {articles.length === 0 && <p>New articles will appear here soon.</p>}
+      <p class="entry-meta" style="margin-top:2.5rem">Follow new articles by <a href="/insights/rss.xml">RSS</a>.</p>
+    </div>
+  </div>
+</BaseLayout>

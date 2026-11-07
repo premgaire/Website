@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import Publication from '../components/Publication.astro';
+import ArticleItem from '../components/ArticleItem.astro';
+import activities from '../data/activities.yaml';
+import profile from '../data/profile.yaml';
+import { getArticles, getPublications } from '../lib/content';
+import { pubTypes, doiUrl, formatDate } from '../lib/utils';
+
+const pubs = await getPublications();
+const groups = (Object.keys(pubTypes) as (keyof typeof pubTypes)[])
+  .map((type) => ({ type, label: pubTypes[type], items: pubs.filter((p) => p.data.type === type) }))
+  .filter((g) => g.items.length > 0);
+const opinion = (await getArticles()).filter((a) => a.data.outlet);
+const talks = activities.talks;
+
+const jsonLd = pubs.filter((p) => p.data.type !== 'thesis').map((p) => ({
+  '@context': 'https://schema.org',
+  '@type': 'ScholarlyArticle',
+  headline: p.data.title,
+  author: p.data.authors,
+  datePublished: String(p.data.year),
+  isPartOf: { '@type': 'Periodical', name: p.data.venue },
+  ...(p.data.doi ? { sameAs: doiUrl(p.data.doi), identifier: { '@type': 'PropertyValue', propertyID: 'DOI', value: p.data.doi } } : {}),
+}));
+---
+<BaseLayout title="Publications" description={`Journal articles, conference presentations and opinion articles by ${profile.name}.`} jsonLd={jsonLd}>
+  <div class="wrap">
+    <header class="page-head">
+      <span class="eyebrow">Publications</span>
+      <h1>Publications</h1>
+      <p>Peer-reviewed articles, conference presentations and opinion writing. A full, current list is also on <a href={profile.links.scholar} target="_blank" rel="noopener">Google Scholar</a> and <a href={profile.links.orcid} target="_blank" rel="noopener">ORCID</a>.</p>
+    </header>
+
+    {groups.map((g) => (
+      <Section title={g.label} id={g.type}>
+        <ul class="entries">{g.items.map((p) => <Publication pub={p} />)}</ul>
+      </Section>
+    ))}
+
+    <Section title="Conference presentations" id="presentations">
+      <ul class="dated">
+        {talks.map((t: any) => (
+          <li>
+            <span class="when">{t.dateLabel ?? formatDate(t.date, 'short')}</span>
+            <span class="what">{t.link ? <a href={t.link} target="_blank" rel="noopener">{t.title}</a> : t.title}<span class="where">{t.event}</span></span>
+          </li>
+        ))}
+      </ul>
+    </Section>
+
+    {opinion.length > 0 && (
+      <Section title="Opinion articles and media" id="opinion">
+        <ul class="entries">{opinion.map((a) => <ArticleItem article={a} />)}</ul>
+      </Section>
+    )}
+  </div>
+</BaseLayout>

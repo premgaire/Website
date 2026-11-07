@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import Project from '../components/Project.astro';
+import { render } from 'astro:content';
+import profile from '../data/profile.yaml';
+import { getPage, getProjects } from '../lib/content';
+
+const page = await getPage('entrepreneurship');
+const { Content } = await render(page!);
+const initiatives = await getProjects('entrepreneurship');
+---
+<BaseLayout title="Entrepreneurship and Innovation" description={`${profile.name}'s work on business incubation, startup support and industry–academia collaboration in Chitwan, Nepal.`}>
+  <div class="wrap">
+    <header class="page-head">
+      <span class="eyebrow">Entrepreneurship and innovation</span>
+      <h1>Building the entrepreneurship ecosystem</h1>
+      <p>Business incubation, startup support and industry–academia collaboration at Boston International College and beyond.</p>
+    </header>
+
+    <Section title="Overview" id="overview">
+      <div class="prose"><Content /></div>
+    </Section>
+
+    <Section title="In numbers" id="numbers" note="BIC Startups and Industry Connect, 2019–2024.">
+      <ul class="figures">
+        <li><strong>5</strong><span>incubation cohorts</span></li>
+        <li><strong>130+</strong><span>students in 30+ teams generated ideas, built prototypes and pitched</span></li>
+        <li><strong>10+</strong><span>teams selected for further incubation</span></li>
+        <li><strong>5</strong><span>teams selected for UGC Nepal funding</span></li>
+        <li><strong>USD 40,000</strong><span>UGC Nepal Entrepreneurship Support Program</span></li>
+        <li><strong>7+</strong><span>institutional collaboration agreements</span></li>
+      </ul>
+    </Section>
+
+    <Section title="Programs and initiatives" id="initiatives">
+      <ul class="entries">{initiatives.map((p) => <Project project={p} />)}</ul>
+    </Section>
+
+    <Section title="Ecosystem and policy engagement" id="engagement">
+      <ul class="dated">
+        <li><span class="when">May 2025</span><span class="what">“Business Roadmap: KPIs, Milestones and Timeline”<span class="where">Business Incubation Bootcamp, Agriculture and Forestry University, Rampur</span></span></li>
+        <li><span class="when">Mar 2024</span><span class="what">“Startup Culture, Liberalism & Trends in Bagmati Province”<span class="where">Liberty Workshop, Language of Liberty Institute, Chitwan</span></span></li>
+        <li><span class="when">Feb 2024</span><span class="what">International Conference on Capacity Development for Fostering Innovation and Entrepreneurship<span class="where">Hetauda School of Management and Social Sciences, Hetauda (participant)</span></span></li>
+        <li><span class="when">Jun 2023</span><span class="what">Industry presentation: “Industry–Academia Cooperation for Institutionalization of Startup Initiatives”<span class="where">Innovative Entrepreneurs Development Conference 2022/23, Federation of Nepal Cottage and Small Industries, Hetauda</span></span></li>
+        <li><span class="when">Dec 2022</span><span class="what">Global Entrepreneurship Bootcamp<span class="where">Bangkok, Thailand (participant)</span></span></li>
+        <li><span class="when">Aug 2022</span><span class="what">Training of Trainers: Incubating the Incubators<span class="where">Skill Lab, Lalitpur</span></span></li>
+      </ul>
+    </Section>
+
+    <Section title="Related research" id="research">
+      <p>My research on incubators and startup simulation grows out of this practice. See <a href="/research/">Research</a> and <a href="/publications/">Publications</a>.</p>
+    </Section>
+  </div>
+</BaseLayout>

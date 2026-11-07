@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import Project from '../components/Project.astro';
+import { render } from 'astro:content';
+import profile from '../data/profile.yaml';
+import { getPage, getProjects } from '../lib/content';
+
+const page = await getPage('research');
+const { Content } = await render(page!);
+const projects = await getProjects('research');
+const ongoing = projects.filter((p) => p.data.status === 'ongoing');
+const completed = projects.filter((p) => p.data.status === 'completed');
+---
+<BaseLayout title="Research" description={`Research interests, agenda and projects of ${profile.name} on entrepreneurship education, startup innovation and startup ecosystems in Nepal.`}>
+  <div class="wrap">
+    <header class="page-head">
+      <span class="eyebrow">Research</span>
+      <h1>Research</h1>
+      <p>How entrepreneurship can be taught well, and how startup ecosystems grow in Nepal.</p>
+    </header>
+
+    <Section title="Interests" id="interests">
+      <ul class="inline-list">{profile.researchInterests.map((i: string) => <li>{i}</li>)}</ul>
+    </Section>
+
+    <Section title="Research agenda" id="agenda">
+      <div class="prose"><Content /></div>
+    </Section>
+
+    <Section title="Ongoing projects" id="ongoing">
+      <ul class="entries">{ongoing.map((p) => <Project project={p} />)}</ul>
+    </Section>
+
+    {completed.length > 0 && (
+      <Section title="Completed projects" id="completed">
+        <ul class="entries">{completed.map((p) => <Project project={p} />)}</ul>
+      </Section>
+    )}
+
+    <Section title="Grants" id="grants">
+      <ul class="dated">
+        <li><span class="when">2025</span><span class="what">UGC Nepal Faculty Research Grant — NPR 300,000<span class="where">Collaborative research project on ICT integration in business-school classrooms (co-investigator)</span></span></li>
+      </ul>
+    </Section>
+
+    <Section title="Profiles" id="profiles">
+      <ul class="inline-list">
+        <li><a href={profile.links.scholar} target="_blank" rel="noopener">Google Scholar</a></li>
+        <li><a href={profile.links.orcid} target="_blank" rel="noopener">ORCID</a></li>
+        <li><a href="/publications/">Publications</a></li>
+      </ul>
+    </Section>
+  </div>
+</BaseLayout>

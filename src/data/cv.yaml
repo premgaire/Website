@@ -1,0 +1,83 @@
+# ─────────────────────────────────────────────────────────────
+#  EDUCATION, EXPERIENCE, GRANTS AND AWARDS  (shown on the About page)
+#  To add an item, copy an existing block (from "- " down to the
+#  next "- "), paste it, and change the text. Newest first.
+# ─────────────────────────────────────────────────────────────
+
+education:
+  - degree: "Master of Management (Entrepreneurship and Innovation)"
+    institution: "La Trobe University"
+    place: "Melbourne, Australia"
+    period: "2015 – 2017"
+    details:
+      - "La Trobe Excellence Scholarship (20% tuition fee waiver)"
+      - "Aggregate score 78.37% (equivalent to Division A – Second Class Honours)"
+  - degree: "Bachelor of Business Administration"
+    institution: "Boston International College (Pokhara University)"
+    place: "Bharatpur, Nepal"
+    period: "2010 – 2014"
+    details:
+      - "Specialisation in Marketing and Finance; GPA 3.61/4.0"
+      - "Research thesis: Cow Milk Production – A Case Study of Tintare Krishi Bikash P. Ltd."
+
+experience:
+  - role: "Lecturer"
+    organisation: "Boston International College"
+    place: "Bharatpur, Nepal"
+    period: "Nov 2019 – present"
+    details:
+      - "Teaches entrepreneurship, operations and the business environment through workshops, cases, projects, experiential learning and role-play simulations."
+  - role: "Assistant Director, BIC Startups"
+    organisation: "Boston International College"
+    place: "Bharatpur, Nepal"
+    period: "Nov 2019 – Nov 2024"
+    details:
+      - "Led the college's business incubation program: planning, training, seed-fund disbursement and program documentation (BIC Startups Quarterly)."
+      - "Focal person for the Industry Connect program, linking students with industry and government."
+
+grants:
+  - year: "2025"
+    title: "Faculty Research Grant (collaborative research)"
+    funder: "University Grants Commission Nepal"
+    amount: "NPR 300,000"
+  - year: "2023/24"
+    title: "Entrepreneurship Support Program (ESP): USD 15,000 for incubation infrastructure and curriculum; USD 25,000 for startup financing"
+    funder: "University Grants Commission Nepal"
+    amount: "USD 40,000"
+
+awards:
+  - year: "2016"
+    title: "CISA National Conference award (AUD 1,500)"
+    details: "Selected from more than 6,000 international students to attend the Council of International Students Australia conference in Darwin, in recognition of volunteering contributions to the La Trobe University community."
+  - year: "2015"
+    title: "La Trobe Excellence Scholarship"
+    details: "20% tuition fee waiver (approx. AUD 10,000) for the Master of Management."
+
+editorial:
+  - year: "2025"
+    title: "Coordinating Editor, BIC Mirror 2025 (Volume 4)"
+    details: "Annual publication of Boston International College: content collection, editing, and author and team correspondence."
+
+# International study, conferences and programmes (shown on the About page)
+international:
+  - year: "2015 – 2017"
+    title: "Postgraduate study, La Trobe University"
+    place: "Melbourne, Australia"
+  - year: "2016"
+    title: "CISA National Conference 2016, Council of International Students Australia"
+    place: "Darwin, Australia"
+  - year: "2022"
+    title: "Global Entrepreneurship Bootcamp"
+    place: "Bangkok, Thailand"
+  - year: "2023"
+    title: "Winter School on Business Analytics for Strategic Decision Making, Dr. D. Y. Patil B-School"
+    place: "Pune, India"
+  - year: "2024"
+    title: "Summer School on Professional Case Writing, Dr. D. Y. Patil B-School"
+    place: "Pune, India"
+  - year: "2024"
+    title: "International Conference on Capacity Development for Fostering Innovation and Entrepreneurship"
+    place: "Hetauda, Nepal"
+  - year: "2025"
+    title: "Presenter, 1st BIC International Conference 2025"
+    place: "Bharatpur, Nepal"

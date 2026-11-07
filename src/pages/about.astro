@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import { render } from 'astro:content';
+import cv from '../data/cv.yaml';
+import profile from '../data/profile.yaml';
+import { getPage } from '../lib/content';
+
+const bio = await getPage('about');
+const short = await getPage('short-bio');
+const { Content: Bio } = await render(bio!);
+const { Content: Short } = await render(short!);
+---
+<BaseLayout title="About" description={`Biography, education and professional experience of ${profile.name}, ${profile.jobTitle} at ${profile.affiliation}.`} type="profile">
+  <div class="wrap">
+    <header class="page-head">
+      <span class="eyebrow">About</span>
+      <h1>Biography</h1>
+      <p>{profile.jobTitle}, {profile.affiliation}. {profile.location}.</p>
+    </header>
+
+    <Section title="Biography" id="bio">
+      <div class="prose"><Bio /></div>
+      {profile.cv && <a class="more-link" href={profile.cv}>Download CV (PDF)</a>}
+    </Section>
+
+    <Section title="Education" id="education">
+      <ul class="entries">
+        {cv.education.map((e: any) => (
+          <li class="entry">
+            <h3 class="entry-title">{e.degree}</h3>
+            <p class="entry-meta">{e.institution}, {e.place} · {e.period}</p>
+            {e.details && <ul class="entry-desc">{e.details.map((d: string) => <li>{d}</li>)}</ul>}
+          </li>
+        ))}
+      </ul>
+    </Section>
+
+    <Section title="Professional experience" id="experience">
+      <ul class="entries">
+        {cv.experience.map((e: any) => (
+          <li class="entry">
+            <h3 class="entry-title">{e.role}</h3>
+            <p class="entry-meta">{e.organisation}, {e.place} · {e.period}</p>
+            {e.details && <ul class="entry-desc">{e.details.map((d: string) => <li>{d}</li>)}</ul>}
+          </li>
+        ))}
+      </ul>
+    </Section>
+
+    <Section title="Grants" id="grants">
+      <ul class="dated">
+        {cv.grants.map((g: any) => (
+          <li><span class="when">{g.year}</span><span class="what">{g.amount} — {g.funder}<span class="where">{g.title}</span></span></li>
+        ))}
+      </ul>
+    </Section>
+
+    <Section title="Awards and scholarships" id="awards">
+      <ul class="dated">
+        {cv.awards.map((a: any) => (
+          <li><span class="when">{a.year}</span><span class="what">{a.title}<span class="where">{a.details}</span></span></li>
+        ))}
+      </ul>
+    </Section>
+
+    <Section title="International engagements" id="international" note="Study, conferences and programmes in Australia, Thailand, India and Nepal.">
+      <ul class="dated">
+        {cv.international.map((i: any) => (
+          <li><span class="when">{i.year}</span><span class="what">{i.title}<span class="where">{i.place}</span></span></li>
+        ))}
+      </ul>
+    </Section>
+
+    <Section title="Editorial work" id="editorial">
+      <ul class="dated">
+        {cv.editorial.map((e: any) => (
+          <li><span class="when">{e.year}</span><span class="what">{e.title}<span class="where">{e.details}</span></span></li>
+        ))}
+      </ul>
+    </Section>
+
+    <Section title="Short biography" id="short-bio" note="For event organisers and publications. Free to reuse.">
+      <div class="prose"><Short /></div>
+    </Section>
+  </div>
+</BaseLayout>

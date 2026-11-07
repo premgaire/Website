@@ -1,0 +1,36 @@
+---
+import profile from '../data/profile.yaml';
+import nav from '../data/navigation.yaml';
+const path = Astro.url.pathname;
+const isCurrent = (href: string) => path === href || (href !== '/' && path.startsWith(href));
+---
+<header class="site-header">
+  <nav class="wrap nav" aria-label="Main">
+    <a class="brand" href="/">{profile.name}</a>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="nav-list">
+      <span>Menu</span>
+    </button>
+    <ul class="nav-list" id="nav-list">
+      {nav.map((item: { label: string; href: string }) => (
+        <li><a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a></li>
+      ))}
+    </ul>
+  </nav>
+</header>
+<script>
+  const button = document.querySelector<HTMLButtonElement>('.menu-button');
+  const list = document.getElementById('nav-list');
+  if (button && list) {
+    button.addEventListener('click', () => {
+      const open = list.classList.toggle('is-open');
+      button.setAttribute('aria-expanded', String(open));
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && list.classList.contains('is-open')) {
+        list.classList.remove('is-open');
+        button.setAttribute('aria-expanded', 'false');
+        button.focus();
+      }
+    });
+  }
+</script>

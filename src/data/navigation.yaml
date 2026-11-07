@@ -1,0 +1,16 @@
+# The main menu. Order here = order on the site.
+# "href" must start and end with "/".
+- label: "About"
+  href: "/about/"
+- label: "Research"
+  href: "/research/"
+- label: "Publications"
+  href: "/publications/"
+- label: "Teaching"
+  href: "/teaching/"
+- label: "Entrepreneurship"
+  href: "/entrepreneurship/"
+- label: "Insights"
+  href: "/insights/"
+- label: "Contact"
+  href: "/contact/"

@@ -1,0 +1,13 @@
+---
+import type { CollectionEntry } from 'astro:content';
+interface Props { project: CollectionEntry<'projects'> }
+const { project } = Astro.props;
+const p = project.data;
+const meta = [p.period, p.role, p.funder].filter(Boolean).join(' · ');
+---
+<li class="entry">
+  <h3 class="entry-title">{p.link ? <a href={p.link} target="_blank" rel="noopener">{p.title}</a> : p.title}</h3>
+  <p class="entry-meta">{meta}</p>
+  <p class="entry-desc">{p.summary}</p>
+  {p.collaborators.length > 0 && <p class="entry-meta" style="margin-top:.35rem">With {p.collaborators.join(', ')}</p>}
+</li>

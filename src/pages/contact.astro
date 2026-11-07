@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import profile from '../data/profile.yaml';
+---
+<BaseLayout title="Contact" description={`Contact ${profile.name} for research collaboration, teaching, talks, workshops and entrepreneurship programs.`}>
+  <div class="wrap">
+    <header class="page-head">
+      <span class="eyebrow">Contact</span>
+      <h1>Contact</h1>
+      <p>I welcome conversations about research collaboration, teaching and guest lectures, workshops and talks, and entrepreneurship and incubation programs.</p>
+    </header>
+
+    <Section title="Get in touch" id="details">
+      <ul class="contact-list">
+        <li><span class="label">Email</span><a href={`mailto:${profile.email}`}>{profile.email}</a></li>
+        <li><span class="label">Affiliation</span><span>{profile.jobTitle}, <a href={profile.affiliationUrl} target="_blank" rel="noopener">{profile.affiliation}</a></span></li>
+        <li><span class="label">Location</span><span>{profile.location}</span></li>
+        {profile.links.linkedin && <li><span class="label">LinkedIn</span><a href={profile.links.linkedin} target="_blank" rel="me noopener">linkedin.com/in/premgaire</a></li>}
+        {profile.links.scholar && <li><span class="label">Google Scholar</span><a href={profile.links.scholar} target="_blank" rel="me noopener">Google Scholar profile</a></li>}
+        {profile.links.orcid && <li><span class="label">ORCID</span><a href={profile.links.orcid} target="_blank" rel="me noopener">{profile.links.orcid.replace('https://orcid.org/', '')}</a></li>}
+      </ul>
+    </Section>
+  </div>
+</BaseLayout>

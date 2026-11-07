@@ -1,0 +1,53 @@
+# ─────────────────────────────────────────────────────────────
+#  PUBLICATIONS
+#  Each publication starts with "- id:". To add one, copy a whole
+#  block, paste it at the top of the list and edit it.
+#
+#  type must be one of:
+#    journal        – peer-reviewed journal article
+#    conference     – conference paper / proceedings
+#    chapter        – book chapter or other scholarly contribution
+#    working-paper  – working paper or manuscript
+#    thesis         – thesis or dissertation
+#
+#  Optional lines (delete if not needed): volume, issue, pages, doi,
+#  url, pdf, summary, featured.
+#  doi: write only the DOI itself (10.xxxx/...), not the full link.
+#  pdf: put the PDF in public/documents/ and write "/documents/name.pdf"
+#  featured: true  → also shown on the home page
+#  Opinion articles go in src/content/articles/ instead.
+# ─────────────────────────────────────────────────────────────
+
+- id: gaire-2026-mvp-simulation
+  type: journal
+  title: "MBA Graduates' Perceptions of MVP-Based Physical Startup Simulation in Entrepreneurship Education: Evidence from Nepal"
+  authors: "Gaire, P. N., Dawadi, M. P., Chapagai, R. R., & Dhungana, B. R."
+  year: 2026
+  venue: "The Lumbini Journal of Business and Economics"
+  volume: "14"
+  issue: "1"
+  pages: "21–39"
+  doi: "10.3126/ljbe.v14i1.92490"
+  summary: "Studies how MBA graduates experienced a classroom startup simulation in which they built and pitched a minimum viable product (MVP)."
+  featured: true
+
+- id: gaire-tiwari-2025-incubators
+  type: journal
+  title: "Evolution and Distribution of Business Incubators: A Literature Review"
+  authors: "Gaire, P. N., & Tiwari, U."
+  year: 2025
+  venue: "BIC Journal of Management"
+  volume: "2"
+  issue: "1"
+  pages: "120–134"
+  doi: "10.3126/bicjom.v2i1.84331"
+  summary: "A literature review of how business incubators have evolved and how they are distributed."
+  featured: true
+
+- id: gaire-2014-bba-thesis
+  type: thesis
+  title: "Cow Milk Production: A Case Study of Tintare Krishi Bikash P. Ltd."
+  authors: "Gaire, P. N."
+  year: 2014
+  venue: "BBA research thesis, Boston International College (Pokhara University)"
+  url: "https://www.academia.edu/15071097/Cow_Milk_Production_A_Case_Study_of_Tintare_Krish_Bikash_P_Ltd"

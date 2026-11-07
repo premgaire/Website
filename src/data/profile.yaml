@@ -1,0 +1,53 @@
+# ─────────────────────────────────────────────────────────────
+#  YOUR BASIC INFORMATION
+#  Edit the text after each colon. Keep the quotes where they are.
+#  This file feeds the header, footer, home page, contact page
+#  and the search-engine information for the whole site.
+# ─────────────────────────────────────────────────────────────
+
+name: "Prem Nath Gaire"
+shortName: "Prem Gaire"
+jobTitle: "Lecturer"
+affiliation: "Boston International College"
+affiliationUrl: "https://bostoncollege.edu.np/"
+location: "Bharatpur, Chitwan, Nepal"
+
+# One line shown under your name on the home page
+tagline: "Lecturer · Researcher · Entrepreneurship and Innovation Ecosystem Practitioner"
+
+# 1–2 sentences used by Google and social-media previews (under 160 characters is best)
+description: "Prem Nath Gaire is a lecturer and early-career researcher at Boston International College, Nepal, working on entrepreneurship education and startup ecosystems."
+
+# The home-page introduction (a few short paragraphs; blank line between paragraphs)
+intro: |
+  I am a lecturer at Boston International College in Bharatpur, Chitwan, Nepal, and an early-career researcher in entrepreneurship. My work asks how entrepreneurship can be taught well and how startup ecosystems grow in Nepal.
+
+  From 2019 to 2024 I led BIC Startups, the college's business incubation program, and coordinated its Industry Connect program with local industry and government. I hold a Master of Management in Entrepreneurship and Innovation from La Trobe University, Melbourne.
+
+researchInterests:
+  - "Startup innovation"
+  - "Entrepreneurship education"
+  - "Digital technologies"
+  - "Business incubation and startup ecosystems"
+  - "Industry–academia–government collaboration"
+
+# Profile photo: replace public/images/profile.jpg with your new photo (same name),
+# ideally square, at least 800 × 800 pixels.
+photo: "/images/profile.jpg"
+photoAlt: "Portrait of Prem Nath Gaire"
+
+# Optional: put your CV PDF in public/documents/ and write its path here,
+# e.g. "/documents/Prem-Gaire-CV.pdf". Leave empty ("") to hide the CV link.
+cv: ""
+
+email: "premgaire.2007@gmail.com"
+
+links:
+  linkedin: "https://www.linkedin.com/in/premgaire/"
+  scholar: "https://scholar.google.com/citations?user=7hlEDGgAAAAJ&hl=en"
+  orcid: "https://orcid.org/0009-0004-0075-8978"
+  # Add more if you like, e.g. researchgate: "https://www.researchgate.net/profile/..."
+
+# Google Search Console: paste ONLY the content value of the HTML-tag verification
+# (the long code), e.g. "abc123XYZ...". Leave empty if you verify through DNS.
+googleSiteVerification: ""

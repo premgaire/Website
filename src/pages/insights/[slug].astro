@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { render } from 'astro:content';
+import profile from '../../data/profile.yaml';
+import { getArticles } from '../../lib/content';
+import { formatDate } from '../../lib/utils';
+
+// Builds a page for every article that is hosted on this site (not external links).
+export async function getStaticPaths() {
+  const articles = (await getArticles()).filter((a) => !a.data.externalUrl);
+  return articles.map((article) => ({ params: { slug: article.id }, props: { article } }));
+}
+
+const { article } = Astro.props;
+const a = article.data;
+const { Content } = await render(article);
+const url = new URL(`/insights/${article.id}/`, Astro.site).href;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: a.title,
+  description: a.summary,
+  datePublished: a.date.toISOString(),
+  inLanguage: a.language,
+  url,
+  author: { '@id': `${Astro.site!.href}#person`, '@type': 'Person', name: profile.name },
+  ...(a.outlet ? { publisher: { '@type': 'Organization', name: a.outlet } } : {}),
+};
+---
+<BaseLayout title={a.title} description={a.summary} type="article" publishedTime={a.date.toISOString()} jsonLd={jsonLd}>
+  <article class="wrap" lang={a.language}>
+    <header class="article-head">
+      <a class="eyebrow" href="/insights/" style="text-decoration:none">← Insights</a>
+      <h1>{a.titleOriginal ?? a.title}</h1>
+      {a.titleOriginal && <p class="entry-meta" lang="en">{a.title}</p>}
+      <p class="entry-meta" lang="en">
+        {profile.name} · <time datetime={a.date.toISOString().slice(0, 10)}>{formatDate(a.date)}</time>
+        {a.outlet && <> · First published in {a.outlet}</>}
+      </p>
+    </header>
+    <div class="article-body"><Content /></div>
+    {a.tags.length > 0 && <p class="entry-meta" style="margin-top:2.5rem" lang="en">Topics: {a.tags.join(', ')}</p>}
+  </article>
+</BaseLayout>

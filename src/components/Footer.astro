@@ -1,0 +1,19 @@
+---
+import profile from '../data/profile.yaml';
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div>
+      <p>© {year} {profile.name}</p>
+      <p>{profile.jobTitle}, {profile.affiliation} · {profile.location}</p>
+    </div>
+    <ul class="footer-links" aria-label="Profiles and contact">
+      <li><a href={`mailto:${profile.email}`}>Email</a></li>
+      {profile.links.linkedin && <li><a href={profile.links.linkedin} rel="me noopener" target="_blank">LinkedIn</a></li>}
+      {profile.links.scholar && <li><a href={profile.links.scholar} rel="me noopener" target="_blank">Google Scholar</a></li>}
+      {profile.links.orcid && <li><a href={profile.links.orcid} rel="me noopener" target="_blank">ORCID</a></li>}
+      <li><a href="/insights/rss.xml">RSS</a></li>
+    </ul>
+  </div>
+</footer>
