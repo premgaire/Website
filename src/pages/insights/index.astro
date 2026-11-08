@@ -24,7 +24,6 @@ const years = [...new Set(articles.map((a) => a.data.date.getUTCFullYear()))];
         </section>
       ))}
       {articles.length === 0 && <p>New articles will appear here soon.</p>}
-      <p class="entry-meta" style="margin-top:2.5rem">Follow new articles by <a href="/insights/rss.xml">RSS</a>.</p>
     </div>
   </div>
 </BaseLayout>

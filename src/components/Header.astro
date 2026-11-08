@@ -6,7 +6,7 @@ const isCurrent = (href: string) => path === href || (href !== '/' && path.start
 ---
 <header class="site-header">
   <nav class="wrap nav" aria-label="Main">
-    <a class="brand" href="/">{profile.name}</a>
+    <a class="brand" href="/" aria-label={`${profile.name}, home`}><span class="brand-mark" aria-hidden="true">PG</span>{profile.name}</a>
     <button class="menu-button" type="button" aria-expanded="false" aria-controls="nav-list">
       <span>Menu</span>
     </button>

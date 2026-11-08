@@ -17,9 +17,9 @@ const paragraphs = profile.intro.trim().split(/\n\s*\n/);
   <div class="wrap">
     <div class="hero">
       <div>
-        <h1>{profile.name}</h1>
         <p class="tagline">{profile.tagline}</p>
-        <div class="intro">{paragraphs.map((p: string) => <p>{p}</p>)}</div>
+        <h1>{profile.name}</h1>
+        <p class="lead">{profile.lead}</p>
         <ProfileLinks />
       </div>
       <figure class="hero-photo">
@@ -27,6 +27,11 @@ const paragraphs = profile.intro.trim().split(/\n\s*\n/);
         <figcaption>{profile.jobTitle}, {profile.affiliation}<br />{profile.location}</figcaption>
       </figure>
     </div>
+
+    <Section title="Profile" id="profile">
+      <div class="profile-text">{paragraphs.map((p: string) => <p>{p}</p>)}</div>
+      <a class="more-link" href="/about/">Full biography and CV</a>
+    </Section>
 
     <Section title="Research interests" id="interests">
       <ul class="inline-list">{profile.researchInterests.map((i: string) => <li>{i}</li>)}</ul>
@@ -42,7 +47,7 @@ const paragraphs = profile.intro.trim().split(/\n\s*\n/);
       <ul class="entries">{current.map((p) => <Project project={p} />)}</ul>
     </Section>
 
-    <Section title="Entrepreneurship in practice" id="practice" note="Business incubation and industry–academia collaboration at Boston International College, 2019–2024.">
+    <Section tint title="Entrepreneurship in practice" id="practice" note="Business incubation and industry–academia collaboration at Boston International College, 2019–2024.">
       <ul class="figures">
         <li><strong>5</strong><span>incubation cohorts led at BIC Startups</span></li>
         <li><strong>130+</strong><span>students in 30+ teams developed and pitched startup ideas</span></li>

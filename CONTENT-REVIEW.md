@@ -38,6 +38,6 @@ Nothing has been invented. Where a source was silent or ambiguous, the item is l
 - **Phone number and referees' contact details**, for privacy.
 - **Testimonials.** There are no real quotes yet.
 
-## Professional email (suggestion)
+## Professional email
 
-The site uses premgaire.2007@gmail.com, as in your CV. Cloudflare offers free **Email Routing**, so you could use an address such as `contact@premgaire.com.np` that forwards to Gmail. Set it up under Cloudflare → *Email → Email Routing*; it adds its own MX and TXT records automatically. Then change `email:` in `src/data/profile.yaml`.
+The site uses **namaste@premgaire.com.np** everywhere (it is set once, in `src/data/profile.yaml`). Make sure this mailbox actually receives mail. The free option is Cloudflare **Email Routing** (Cloudflare → *Email → Email Routing*): create `namaste@premgaire.com.np` and forward it to your Gmail. Cloudflare adds the required MX and TXT records automatically. Send yourself a test email after setting it up.

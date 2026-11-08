@@ -1,8 +1,8 @@
 ---
-interface Props { title: string; note?: string; id?: string }
-const { title, note, id } = Astro.props;
+interface Props { title: string; note?: string; id?: string; tint?: boolean }
+const { title, note, id, tint = false } = Astro.props;
 ---
-<section class="section" id={id} aria-labelledby={id ? `${id}-h` : undefined}>
+<section class:list={['section', { tinted: tint }]} id={id} aria-labelledby={id ? `${id}-h` : undefined}>
   <div class="section-label">
     <h2 id={id ? `${id}-h` : undefined}>{title}</h2>
     {note && <p>{note}</p>}
