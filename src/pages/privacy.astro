@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import profile from '../data/profile.yaml';
+---
+<BaseLayout title="Privacy" description={`How ${profile.shortName}'s website uses analytics and handles personal information.`}>
+  <div class="wrap">
+    <header class="page-head">
+      <span class="eyebrow">Privacy</span>
+      <h1>Privacy notice</h1>
+      <p>This website is a personal academic and professional site. It has no user accounts, forms or advertising.</p>
+    </header>
+
+    <Section title="Analytics" id="analytics">
+      <div class="prose">
+        <p>To understand which pages are useful, this site uses Google Tag Manager and Google Analytics. They use cookies and similar technologies to collect usage information such as the pages you visit, how you arrived, your device and browser type, and your approximate location. I see this information only as aggregated statistics, not as data about identifiable individuals.</p>
+        <p>Google processes this data under its own privacy policy: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>. You can block analytics cookies in your browser settings, or with Google's <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">opt-out browser add-on</a>.</p>
+      </div>
+    </Section>
+
+    <Section title="Email" id="email">
+      <div class="prose">
+        <p>If you write to me at <a href={`mailto:${profile.email}`}>{profile.email}</a>, I use your message and contact details to reply to you.</p>
+      </div>
+    </Section>
+
+    <Section title="Questions" id="questions">
+      <div class="prose"><p>For any question about this notice, email <a href={`mailto:${profile.email}`}>{profile.email}</a>.</p></div>
+    </Section>
+  </div>
+</BaseLayout>

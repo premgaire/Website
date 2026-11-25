@@ -1,0 +1,102 @@
+# ─────────────────────────────────────────────────────────────
+#  SERVICES  (Services page, plus the "How I can help" list on the home page)
+#  Each service starts with "- id:". Order here = order on the site.
+#  To add a service, copy a whole block and edit it. To hide one, delete it.
+#  "id" becomes the web address: premgaire.com.np/services/#startup-mentoring
+#  Lists (forWho, offers, formats) can have any number of lines.
+# ─────────────────────────────────────────────────────────────
+
+intro: "Whether you are building a startup, running a small business, or leading a college or development program, I help people build entrepreneurial skills and ventures they can use the next day. Choose a service below, or write to me and we will shape something together."
+
+# Shown at the bottom of the Services page
+pricing: "Fees depend on the format, length and group size. Write to me with a short description of what you need, and I will reply with options and a quote."
+
+services:
+  - id: startup-mentoring
+    title: "Startup Mentoring"
+    short: "One-to-one guidance for founders and student entrepreneurs, from first idea to funding-ready venture."
+    description: "Starting a business can feel lonely. I offer honest, practical guidance from someone who has led five incubation cohorts and helped more than 30 student teams take ideas to prototypes and pitches."
+    forWho:
+      - "Early-stage founders and student entrepreneurs"
+      - "Graduates deciding between a job and their own venture"
+      - "Teams preparing for incubators, competitions or seed funding"
+    offers:
+      - "Testing your idea and finding your first customers"
+      - "Building a minimum viable product (MVP) quickly and cheaply"
+      - "A business plan and roadmap with clear KPIs, milestones and timelines"
+      - "Pitch preparation for incubator programs, competitions and seed funding"
+      - "Career direction: employment, entrepreneurship, or both"
+    formats: ["One-off session", "3-month mentoring plan", "Small-group mentoring"]
+    evidence: "Led BIC Startups for five years: more than 130 students in over 30 teams generated ideas, built prototypes and pitched; more than 10 teams went on to further incubation and five were selected for UGC Nepal funding."
+    cta: "Request a mentoring session"
+
+  - id: business-consulting
+    title: "Business Consulting"
+    short: "Practical support for small businesses and new ventures: planning, roadmaps, financial literacy and growth decisions."
+    description: "I help owners and founders step back from day-to-day work and make clear, practical decisions about where the business is going and how to get there."
+    forWho:
+      - "Small businesses and SMEs"
+      - "New and early-stage ventures"
+      - "Entrepreneurs in Chitwan and across Nepal"
+    offers:
+      - "Business planning and roadmaps: KPIs, milestones and timelines"
+      - "Testing a new product, service or market before investing heavily"
+      - "Entrepreneurship and financial literacy for owners and teams"
+      - "Understanding the local business environment and its opportunities"
+    formats: ["Advisory session", "Short engagement (a few sessions)", "Team workshop"]
+    evidence: "Delivered entrepreneurship and financial-literacy training for SMEs of Chitwan (SOS Children's Village Livelihood Support Program) and a business-roadmap workshop for Agriculture and Forestry University's Business Incubation Bootcamp. Master of Management in Entrepreneurship and Innovation, La Trobe University."
+    cta: "Discuss your business"
+
+  - id: incubation-advisory
+    title: "Incubation and Program Advisory"
+    short: "For colleges, NGOs and associations: designing incubation programs, grant proposals and industry–academia links."
+    description: "I help institutions design and run entrepreneurship programs that work, drawing on five years of running a college business incubator, from planning and training to seed-fund disbursement and reporting."
+    forWho:
+      - "Colleges and universities"
+      - "NGOs and development programs"
+      - "Local government, chambers and industry associations"
+    offers:
+      - "Incubation programs: design, selection process, training plan, seed funding and quarterly reporting"
+      - "Grant proposals: planning and writing entrepreneurship and research funding applications"
+      - "Industry–academia links: industry visits, experience-sharing sessions, internships and job placement"
+      - "Curriculum design for experiential entrepreneurship courses"
+      - "Ecosystem research: mapping startup opportunities and challenges in a region"
+    formats: ["Advisory engagement", "Program design support", "Proposal review"]
+    evidence: "Secured USD 40,000 from UGC Nepal's Entrepreneurship Support Program and helped sign collaboration agreements with more than seven institutions. Trained as an incubator manager through Skill Lab's Incubating the Incubators program."
+    cta: "Discuss your program"
+
+  - id: training-workshops
+    title: "Training and Workshops"
+    short: "Interactive sessions that move participants from ideas to action, in English or Nepali."
+    description: "My workshops are hands-on. Participants leave with a plan, a tool or a decision, not just notes. Each session is adapted to the group."
+    forWho:
+      - "Students and colleges"
+      - "SMEs and business associations"
+      - "NGOs, incubators and youth programs"
+    offers:
+      - "Entrepreneurial mindset and business idea development"
+      - "From idea to MVP: testing a business idea cheaply and quickly"
+      - "Business roadmap: KPIs, milestones and timelines"
+      - "Entrepreneurship and financial literacy for small businesses"
+      - "Career vision: choosing between employment and entrepreneurship"
+      - "Startup culture and trends in Nepal; hands-on business simulation"
+    formats: ["2-hour session", "Half day", "Full day", "Multi-day bootcamp"]
+    evidence: "Recent workshops for Agriculture and Forestry University, SOS Children's Village, Better Chitwan, Gurukul College and the Language of Liberty Institute."
+    cta: "Book a workshop"
+
+  - id: teaching-talks
+    title: "Teaching, Guest Lectures and Talks"
+    short: "Guest lectures, masterclasses, panels and faculty sessions on entrepreneurship and innovation."
+    description: "I design learning where people do business rather than just read about it, using workshops, real cases, projects and simulations."
+    forWho:
+      - "Universities and colleges"
+      - "Conferences, forums and panels"
+      - "Faculty development programs"
+    offers:
+      - "Guest lectures and masterclasses in entrepreneurship and innovation"
+      - "Course and curriculum design for entrepreneurship programs"
+      - "Faculty sessions on activity-based teaching, the case method and classroom simulations"
+      - "Talks and panels on startups, innovation and industry–academia partnership"
+    formats: ["Guest lecture", "Masterclass", "Panel or keynote", "Faculty workshop"]
+    evidence: "Lecturer since 2019, teaching six courses; my MVP-based startup simulation is backed by published research (The Lumbini Journal of Business and Economics, 2026)."
+    cta: "Invite me to speak or teach"

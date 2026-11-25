@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import data from '../data/services.yaml';
+import profile from '../data/profile.yaml';
+
+const mailto = (subject: string) => `mailto:${profile.email}?subject=${encodeURIComponent(subject)}`;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: `${profile.name} — Mentoring, Consulting and Training`,
+  url: new URL('/services/', Astro.site).href,
+  email: profile.email,
+  image: new URL(profile.photo, Astro.site).href,
+  address: { '@type': 'PostalAddress', addressLocality: 'Bharatpur', addressRegion: 'Chitwan', addressCountry: 'NP' },
+  areaServed: { '@type': 'Country', name: 'Nepal' },
+  founder: { '@id': `${Astro.site!.href}#person` },
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Services',
+    itemListElement: data.services.map((s: any) => ({
+      '@type': 'Offer',
+      itemOffered: { '@type': 'Service', name: s.title, description: s.short, url: new URL(`/services/#${s.id}`, Astro.site).href },
+    })),
+  },
+};
+---
+<BaseLayout title="Services: Startup Mentoring, Business Consulting and Training" description={`${profile.name} offers startup mentoring, business consulting, incubation advisory, workshops and guest lectures in Chitwan and across Nepal.`} jsonLd={jsonLd}>
+  <div class="wrap">
+    <header class="page-head">
+      <span class="eyebrow">Services</span>
+      <h1>How I can help</h1>
+      <p>{data.intro}</p>
+      <ul class="service-jump" aria-label="Services on this page">
+        {data.services.map((s: any) => <li><a href={`#${s.id}`}>{s.title}</a></li>)}
+      </ul>
+    </header>
+
+    {data.services.map((s: any, i: number) => (
+      <Section title={s.title} id={s.id} note={s.short}>
+        <p class="service-lead">{s.description}</p>
+        <div class="service-cols">
+          <div>
+            <h3 class="mini-head">Who it's for</h3>
+            <ul class="check-list">{s.forWho.map((x: string) => <li>{x}</li>)}</ul>
+          </div>
+          <div>
+            <h3 class="mini-head">What we can work on</h3>
+            <ul class="check-list">{s.offers.map((x: string) => <li>{x}</li>)}</ul>
+          </div>
+        </div>
+        {s.formats && (
+          <>
+            <h3 class="mini-head">Formats</h3>
+            <ul class="chip-list">{s.formats.map((f: string) => <li>{f}</li>)}</ul>
+          </>
+        )}
+        {s.evidence && <p class="evidence"><strong>Experience behind it:</strong> {s.evidence}</p>}
+        <a class="btn" href={mailto(`${s.title} enquiry`)}>{s.cta}</a>
+      </Section>
+    ))}
+
+    <Section title="Fees and next steps" id="fees" tint>
+      <p>{data.pricing}</p>
+      <p>Email <a href={`mailto:${profile.email}`}>{profile.email}</a>, or see the <a href="/contact/">contact page</a>.</p>
+      <a class="btn" href={mailto('Enquiry from premgaire.com.np')}>Get in touch</a>
+    </Section>
+  </div>
+</BaseLayout>

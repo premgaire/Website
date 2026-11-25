@@ -2,13 +2,15 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Section from '../components/Section.astro';
 import profile from '../data/profile.yaml';
+import services from '../data/services.yaml';
+const mailto = (subject: string) => `mailto:${profile.email}?subject=${encodeURIComponent(subject)}`;
 ---
 <BaseLayout title="Contact" description={`Contact ${profile.name} for research collaboration, teaching, talks, workshops and entrepreneurship programs.`}>
   <div class="wrap">
     <header class="page-head">
       <span class="eyebrow">Contact</span>
       <h1>Contact</h1>
-      <p>I welcome conversations about research collaboration, teaching and guest lectures, workshops and talks, and entrepreneurship and incubation programs.</p>
+      <p>I welcome conversations about startup mentoring, business consulting, incubation programs, workshops, teaching and talks, and research collaboration.</p>
     </header>
 
     <Section title="Get in touch" id="details">
@@ -20,6 +22,16 @@ import profile from '../data/profile.yaml';
         {profile.links.scholar && <li><span class="label">Google Scholar</span><a href={profile.links.scholar} target="_blank" rel="me noopener">Google Scholar profile</a></li>}
         {profile.links.orcid && <li><span class="label">ORCID</span><a href={profile.links.orcid} target="_blank" rel="me noopener">{profile.links.orcid.replace('https://orcid.org/', '')}</a></li>}
       </ul>
+    </Section>
+
+    <Section title="Start an enquiry" id="enquiry" note="Each link opens your email with the subject filled in.">
+      <ul class="service-list">
+        {services.services.map((s: any) => (
+          <li><a href={mailto(`${s.title} enquiry`)}>{s.title}</a><p>{s.short}</p></li>
+        ))}
+        <li><a href={mailto('Research collaboration')}>Research collaboration</a><p>Joint research and co-authorship on entrepreneurship education and startup ecosystems.</p></li>
+      </ul>
+      <p class="entry-meta" style="margin-top:1.25rem">Helpful to include: who you are, what you need, your preferred dates, and the size of the group (for workshops).</p>
     </Section>
   </div>
 </BaseLayout>

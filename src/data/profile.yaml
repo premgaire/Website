@@ -58,3 +58,7 @@ links:
 # Google Search Console: paste ONLY the content value of the HTML-tag verification
 # (the long code), e.g. "abc123XYZ...". Leave empty if you verify through DNS.
 googleSiteVerification: ""
+
+# Google Tag Manager container ID (traffic analytics). Loads only on the live site.
+# Leave empty ("") to switch tracking off.
+gtmId: "GTM-P59FWP2H"

@@ -281,3 +281,37 @@ main { display: block; padding-bottom: 3rem; }
   body { background: #fff; color: #000; }
   a { color: #000; }
 }
+
+/* ---------- Buttons ---------- */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 2.75rem; padding: 0.6rem 1.3rem; border-radius: 999px; background: var(--accent); color: #fff; font-weight: 600; font-size: 0.95rem; text-decoration: none; border: 1px solid var(--accent); transition: background-color .15s, color .15s; }
+.btn:hover { background: var(--accent-hover); border-color: var(--accent-hover); color: #fff; }
+.btn::after { content: "→"; }
+@media (prefers-color-scheme: dark) { .btn { background: var(--crimson); border-color: var(--crimson); } .btn:hover { background: #8a1216; color: #fff; } }
+.btn.ghost { background: transparent; color: var(--accent); }
+.btn.ghost:hover { background: var(--accent); color: #fff; }
+
+/* ---------- Services ---------- */
+.service-jump { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; padding: 0; margin: 1.5rem 0 0; }
+.service-jump li { margin: 0; }
+.service-jump a { display: inline-block; padding: 0.4rem 0.9rem; min-height: 2.5rem; line-height: 1.6; border: 1px solid var(--rule); background: var(--paper); border-radius: 999px; font-size: 0.9rem; font-weight: 500; text-decoration: none; color: var(--ink-soft); }
+.service-jump a:hover { border-color: var(--accent); color: var(--accent); }
+.section[id] { scroll-margin-top: calc(var(--header-h) + 1rem); }
+.service-lead { font-size: 1.08rem; color: var(--ink-soft); }
+.service-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 2.5rem; margin: 1.25rem 0 0.5rem; }
+@media (max-width: 640px) { .service-cols { grid-template-columns: 1fr; } }
+.mini-head { font-family: var(--sans); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin: 0.75rem 0 0.6rem; }
+.check-list { list-style: none; padding: 0; margin: 0 0 1rem; }
+.check-list li { position: relative; padding-left: 1.4rem; color: var(--ink-soft); font-size: 0.98rem; }
+.check-list li::before { content: ""; position: absolute; left: 0.1rem; top: 0.62em; width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--accent); opacity: 0.85; }
+.chip-list { display: flex; flex-wrap: wrap; gap: 0.45rem; list-style: none; padding: 0; margin: 0 0 1.25rem; }
+.chip-list li { margin: 0; padding: 0.25rem 0.75rem; border-radius: 999px; background: var(--accent-tint); color: var(--ink-soft); font-size: 0.88rem; }
+.evidence { background: var(--blush); border-left: 3px solid var(--accent); padding: 0.9rem 1.1rem; font-size: 0.95rem; color: var(--ink-soft); margin: 0.5rem 0 1.5rem; }
+.evidence strong { color: var(--ink); }
+
+/* Home: service list */
+.service-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0 2.5rem; }
+.service-list li { margin: 0; padding: 1rem 0; border-bottom: 1px solid var(--rule); }
+.service-list a { font-family: var(--serif); font-weight: 600; font-size: 1.08rem; color: var(--ink); text-decoration: none; }
+.service-list a:hover { color: var(--accent); text-decoration: underline; }
+.service-list p { margin: 0.25rem 0 0; color: var(--muted); font-size: 0.94rem; line-height: 1.55; }
+@media (max-width: 640px) { .service-list { grid-template-columns: 1fr; } }

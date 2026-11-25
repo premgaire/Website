@@ -22,6 +22,7 @@ src/
 │   ├── publications.yaml      ALL publications (one list)
 │   ├── cv.yaml                education, experience, grants, awards, international engagements
 │   ├── activities.yaml        workshops, talks, professional training, courses taught
+│   ├── services.yaml          services offered (Services page and home page)
 │   └── navigation.yaml        the main menu
 ├── content/                   ← longer writing (Markdown)
 │   ├── articles/              one file per op-ed / insight  (Insights page)
@@ -49,8 +50,12 @@ public/
 | `/publications/` | Publications by category, conference presentations, opinion articles |
 | `/teaching/` | Teaching philosophy, courses, approaches, workshops, talks, academic development |
 | `/entrepreneurship/` | Incubation, startup support, industry–academia collaboration, ecosystem engagement |
-| `/insights/` | Op-eds and commentary (with RSS feed at `/insights/rss.xml`) |
-| `/contact/` | Email and professional profiles |
+| `/insights/` | Op-eds and commentary |
+| `/services/` | Startup mentoring, business consulting, incubation advisory, training, teaching and talks (from `src/data/services.yaml`) |
+| `/contact/` | Email, professional profiles, and quick enquiry links per service |
+| `/privacy/` | Privacy notice (analytics and email) |
+
+Analytics: Google Tag Manager (`gtmId` in `profile.yaml`), loaded on the live site only.
 
 Search-engine features: page titles and descriptions, canonical URLs, Open Graph and X/Twitter previews, `sitemap-index.xml`, `robots.txt`, and Schema.org structured data (`Person` on every page, `ScholarlyArticle` for publications, `Article` for insights).
 

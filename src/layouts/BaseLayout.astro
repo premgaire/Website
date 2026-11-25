@@ -55,6 +55,8 @@ const person = {
   knowsAbout: profile.researchInterests,
   sameAs: Object.values(profile.links),
 };
+// Google Tag Manager: only on the live (production) build, never in local previews.
+const gtmId: string = import.meta.env.PROD ? (profile.gtmId ?? '') : '';
 const schemas = [person, ...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [])];
 ---
 <!doctype html>
@@ -62,6 +64,11 @@ const schemas = [person, ...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {gtmId && (
+      <script is:inline define:vars={{ gtmId }}>
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer',gtmId);
+      </script>
+    )}
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <meta name="author" content={profile.name} />
@@ -95,6 +102,9 @@ const schemas = [person, ...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]
     {schemas.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
   </head>
   <body>
+    {gtmId && (
+      <noscript><iframe src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`} height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+    )}
     <a class="skip-link" href="#main">Skip to main content</a>
     <Header />
     <main id="main">

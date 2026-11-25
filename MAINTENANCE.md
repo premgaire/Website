@@ -118,6 +118,18 @@ In `src/data/profile.yaml`, change `email:` or the lines under `links:`. To remo
 
 Nothing extra is needed. Every commit to `main` triggers the **Deploy website** workflow (see the **Actions** tab). To re-run it by hand, open **Actions → Deploy website → Run workflow**.
 
+## 9. Update your services
+
+**File:** `src/data/services.yaml`
+
+Each service has a title, a one-line `short` description (used on the home page), a longer `description`, lists of who it is for and what it covers, `formats`, the `evidence` (experience behind it) and the button text (`cta`). Edit any line. To add a service, copy a whole block starting with `- id:`. To remove one, delete its block. The order in the file is the order on the site. The intro text and the fees line are at the top of the file.
+
+Every "enquire" button opens the visitor's email app with a subject such as "Startup Mentoring enquiry", addressed to the email in `profile.yaml`.
+
+## 10. Traffic analytics (Google Tag Manager)
+
+The container ID is set in `src/data/profile.yaml` as `gtmId: "GTM-P59FWP2H"`. Tracking runs only on the live site, never on local previews. To switch it off, set `gtmId: ""`. What is measured, such as Google Analytics page views, is configured inside Google Tag Manager itself, not in this website. The privacy notice is at `src/pages/privacy.astro`; update it if you add other tracking.
+
 ## If something breaks
 
 - **Red cross in Actions:** click it, then click **build** to see the message. It usually names the file and line, for example a missing quote or wrong indentation in a YAML file, or a `type:` that isn't one of the allowed words. Fix that file and commit again. The live site stays on the last working version until then.

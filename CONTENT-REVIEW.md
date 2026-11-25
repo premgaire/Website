@@ -41,3 +41,19 @@ Nothing has been invented. Where a source was silent or ambiguous, the item is l
 ## Professional email
 
 The site uses **namaste@premgaire.com.np** everywhere (it is set once, in `src/data/profile.yaml`). Make sure this mailbox actually receives mail. The free option is Cloudflare **Email Routing** (Cloudflare → *Email → Email Routing*): create `namaste@premgaire.com.np` and forward it to your Gmail. Cloudflare adds the required MX and TXT records automatically. Send yourself a test email after setting it up.
+
+## Services (added November 2026)
+
+The Services page (`src/data/services.yaml`) is built from the service copy approved in the content pack, plus evidence from your CV and LinkedIn summary. Please confirm:
+
+| # | Item |
+|---|---|
+| S1 | **Online sessions.** The site does not mention online delivery, because it was never confirmed. If you offer mentoring or consulting online, add "Online" to the relevant `formats`. |
+| S2 | **Free first call.** The content pack's optional "free 20-minute first call" is not included. Add it to `pricing:` if you want to offer it. |
+| S3 | **Reply time.** No reply time is promised. Add one (for example "within 2 working days") to `intro:` or `pricing:` if you like. |
+| S4 | **Service names and scope.** "Business Consulting" is framed around planning, roadmaps, idea testing and financial literacy for small businesses, which matches your workshops and training. Remove or add topics to match what you want to sell. |
+| S5 | **Privacy notice** (`src/pages/privacy.astro`) describes the analytics accurately but in general terms. Review it, and seek advice if you expect many visitors from the EU, whose rules may require a cookie-consent banner. |
+
+## Google Tag Manager
+
+The container `GTM-P59FWP2H` is installed on every page. Tag Manager on its own records nothing: inside tagmanager.google.com, the container needs a **Google tag** (with your GA4 Measurement ID, `G-…`) firing on **All Pages**, and the container must be **published**. Use *Preview* in Tag Manager to confirm that it fires on premgaire.com.np.
